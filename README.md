@@ -7,7 +7,7 @@ This project is an attempt to predict a Pitchfork review rating (ranging from 0 
 Since I'm using a regular notebook with 8GB RAM and no GPU, training a deep RNN on it proved impossible. So, I resorted to the free GPU available at Google Colab (http://colab.research.google.com/) to train my models. 
 The initial architecture design for the neural network is depicted below:
 
-![Initial architecture](https://github.com/rafael-siqueira/pitchfork/blob/master/Architecture.png)
+![Initial architecture](https://github.com/rafael-siqueira/pitchfork/blob/master/images/Architecture.png)
 
 At first, I trained a regression RNN with a sigmoid activation function and MSE as its loss function, changing my labels from a 0-10 scale to a 0-1 (by simply dividing them by 10). The results obtained were not great.   
 
@@ -15,11 +15,11 @@ Since I presumably didn't have enough training data to be able to achieve the gr
 
 So, I simplified the problem again, rounding the labels to integers from 0 to 10. Therefore, I still used a softmax activation, but now with only 11 output nodes. This approach seemed promissing by the initial results obtained and so I started tweaking hyperparameters to try to enhance accuracy. After several tests, I obtained the following model evolution, expressed in the table below:
 
-![Model evolution](https://github.com/rafael-siqueira/pitchfork/blob/master/Models_Results.png)
+![Model evolution](https://github.com/rafael-siqueira/pitchfork/blob/master/images/Models_Results.png)
 
 After model 3, I continued increasing complexity by having 4 LSTM layers and the results started getting worse. **Therefore, since model 3 had good accuracy and MSE values for the dev set, in comparison to the other models, I decided to use it on the test set and the results were reasonable. So, I decided to use model 3 in production, for now.**
 
-The Jupiter notebook `Pitchfork_vgit.ipynb` contains the code for the process described above, with model 3's implementation.
+The Jupiter notebook `Pitchfork_vgit.ipynb` contains the code for the process described above, with model 3's implementation. In order to be able to use the model trained or train new models, you need to uncompress the GloVe and model .rar files.
 
 ### Deploying
 
