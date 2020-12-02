@@ -17,7 +17,7 @@ So, I simplified the problem again, rounding the labels to integers from 0 to 10
 
 ![Model evolution](https://github.com/rafael-siqueira/pitchfork/blob/master/images/Models_Results.png)
 
-After model 3, I continued increasing complexity by having 4 LSTM layers and the results started getting worse. **Therefore, since model 3 had good accuracy and MSE values for the dev set, in comparison to the other models, I decided to use it on the test set and the results were reasonable. So, I decided to use model 3 in production, for now.**
+After model 3, I continued increasing complexity by having 4 LSTM layers and the results started getting worse. **Therefore, since model 3 had good accuracy and MSE values for the dev set, in comparison to the other models, I decided to use it on the test set and the results were not terrible. So, I decided to use model 3 in production, for now.**
 
 The Jupiter notebook `Pitchfork_vgit.ipynb` contains the code for the process described above, with model 3's implementation. In order to be able to use the model trained or train new models, you need to uncompress the GloVe and model .rar files.
 
