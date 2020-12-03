@@ -13,9 +13,9 @@ import smtplib, ssl
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
-dbx = dropbox.Dropbox('udzwfVKPgi8AAAAAAAAAAXm9iKS2TYFpWiHas7djO7jlePecmJetFgRJGyLivywy')
+dbx = dropbox.Dropbox($YOUR_TOKEN)
 dbx_path = '/Aplicativos/pitchfork-reviews/reviews.json'
-email_list = ['rr.siqueira@gmail.com', 'grsiqueira@gmail.com']
+email_list = [$YOUR_EMAILS]                 
 
 # Write docstrings for these functions
 def file_exists(path):
@@ -59,12 +59,12 @@ def sentence_to_indices(X, word_to_index, max_review_length, begin_end=False):
   
     return X_indices
 
-# Function to get json review data
+# Function to get .json review data
 def get_reviews_json(url, size, headers, start=0):
     url_search = url.format(size=size, start=start)
     return rq.get(url_search, headers=headers).json()
 
-# XXXXXX
+# Function to scrape content from review page
 def get_and_save_review_content(review_series, save=False):
     url_review = 'https://pitchfork.com'+review_series[0]
     resp = rq.get(url_review)
@@ -95,7 +95,7 @@ def get_and_save_review_content(review_series, save=False):
     review = description + " " + content
     return review
 
-# XXXXXX
+# Function to scrape all review pages
 def get_new_reviews(size):
     
     headers = {
@@ -209,8 +209,8 @@ def send_email(email_list, artists, album, url):
     link = 'http://pitchfork.com'+url
     aa = artists+' - '+album
     port = 465  # For SSL
-    password = 'p1tchf0rk!'
-    sender_email = 'pitchfork.reviews.wizard@gmail.com'
+    password = $YOUR_PASSWORD
+    sender_email = $YOUR_SENDER_EMAIL
     message = MIMEMultipart("alternative")
     message["Subject"] = "Good review released @ Pitchfork ❤"
     message["From"] = sender_email
@@ -248,11 +248,11 @@ def send_email(email_list, artists, album, url):
     
     return True
 
-# XXXX
+# Save reviews on .json file
 def save_reviews(new_reviews_df, review_model, word_to_index, max_review_length):
     reviews_df = pd.DataFrame()
     new_review_dict = {}
-    # Baixar arquivo do Dropbox
+    # Load Dropbox file
     if file_exists(dbx_path):
         dbx.files_download_to_file('./reviews.json', dbx_path, rev=None)
     
@@ -303,7 +303,7 @@ def save_reviews(new_reviews_df, review_model, word_to_index, max_review_length)
     
     return True
 
-# XXXXX
+# Build HTML table with reviews from .json file
 def build_reviews():
     reviews_df = pd.DataFrame()
     reviews_formatted = []
