@@ -327,9 +327,12 @@ def build_reviews():
     # Calculate metrics
     metrics = {}
     count_rev = i
-    accuracy_0 = int(round(count_0/count_rev, 2)*100)
-    accuracy_1 = int(accuracy_0 + round(count_1/count_rev, 2)*100)
-    accuracy_2 = int(accuracy_1 + round(count_2/count_rev, 2)*100)
+    accuracy_0 = count_0/count_rev
+    accuracy_1 = accuracy_0 + count_1/count_rev
+    accuracy_2 = accuracy_1 + count_2/count_rev
+    accuracy_0 = int(round(accuracy_0,2)*100)
+    accuracy_1 = int(round(accuracy_1,2)*100)
+    accuracy_2 = int(round(accuracy_2,2)*100)
     misclassification_error = 100 - accuracy_0
     
     metrics['count_rev'] = count_rev
