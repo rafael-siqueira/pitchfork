@@ -17,7 +17,7 @@ dbx = dropbox.Dropbox($YOUR_TOKEN)
 dbx_path = '/Aplicativos/pitchfork-reviews/reviews.json'
 email_list = [$YOUR_EMAILS]                 
 
-# Write docstrings for these functions
+# Function to check if file exists at Dropbox
 def file_exists(path):
     try:
         dbx.files_get_metadata(path)
