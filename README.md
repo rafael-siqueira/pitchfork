@@ -34,4 +34,4 @@ The metrics tracked and shown in the webpage are the following:
 The scripts `app.py`, `monitor.py`, `review_utils.py` and `wsgi.py` are the ones running and maintaining the website. It was implemented with Flask, Heroku and Dropbox. Flask for creating the web app, Heroku to host it and Dropbox for storing the .json file with the reviews' information. As next steps, I intend to try out different architectures/models, implement a DB to store the information and make the website look a little better ;)
 
 The webpage address is https://pitchfork-reviews.herokuapp.com/  
-Since it is run on free Heroku's dynos, it is shut down if there is no traffic for a while. Therefore, load time might be around 30 seconds which is the time to restart the dyno and unidle the process.
+Since it is run on free Heroku's dynos, it is shut down if there is no traffic for a while. Therefore, load time might be around 30 seconds which is the time to restart the dyno and unidle the process. If loading fails on first try, it is also for this reason and a simple F5 should do the trick.
